@@ -1,0 +1,23 @@
+@import 'carbon-components/scss/globals/scss/vendor/@carbon/elements/scss/type/_styles.scss';
+// @import '~carbon-components/scss/globals/scss/styles.scss';
+// uncomment above to be able to use color variables
+
+
+.HeaderGradient {
+  @include carbon--type-style('expressive-heading-06');
+  color: white; //$ui-background;
+  width: 100%;
+  background: linear-gradient(135deg, #221fff, #948dff);
+  padding: 80px;
+  padding-top: 130px; 
+}
+
+.ApplicationName{
+  @include carbon--type-style('expressive-heading-04');
+  color: white;
+  margin-bottom: 20px;
+}
+
+.Description{
+  margin-top:60px;
+}
