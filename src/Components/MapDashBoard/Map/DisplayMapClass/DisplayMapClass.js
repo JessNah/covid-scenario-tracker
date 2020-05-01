@@ -65,6 +65,7 @@ export class DisplayMapClass extends React.Component {
     this.ui = H.ui.UI.createDefault(map, defaultLayers);
 
 
+
     // add customer marker
     var LocationOfMarker = { lat: this.props.lat, lng: this.props.lng };
     // Create a marker icon from an image URL:
@@ -72,12 +73,40 @@ export class DisplayMapClass extends React.Component {
 
     // Create a marker using the previously instantiated icon:
     var marker = new H.map.Marker(LocationOfMarker, {}); // { icon: icon}
-
-    // var heatpoint = new H.geo.Ipoint({lat: this.props.lat, lng: this.props.lng});
-
+      
     // Add the marker to the map:
     map.addObject(marker);
-    // map.addObject(heatpoint);
+
+
+
+    //heatmap
+    // Create a provider for a semi-transparent heat map:
+    var heatmapProvider = new H.data.heatmap.Provider({
+      colors: new H.data.heatmap.Colors({
+      '0': 'rgba(255, 255, 255, 0.0)', //transparent white
+      '0.2': 'yellow',
+      '0.5': 'red',
+      '1': 'red'
+      }, true),
+      opacity: 1.0,
+      // Paint assumed values in regions where no data is available
+      assumeValues: true
+    });
+
+    // Add the data:
+    heatmapProvider.addData([
+      {lat: this.props.lat, lng: this.props.lng, value: 1},
+      {lat: this.props.lat + 0.004, lng: this.props.lng + 0.005, value: 1},
+      {lat: this.props.lat - 0.005, lng: this.props.lng - 0.002, value: 1},
+      {lat: this.props.lat + 0.003, lng: this.props.lng - 0.004, value: 1},
+      {lat: this.props.lat + 0.005, lng: this.props.lng - 0.007, value: 1}
+    ]);
+
+    // Add a layer for the heatmap provider to the map:
+    map.addLayer(new H.map.layer.TileLayer(heatmapProvider));
+
+
+
 
 
     this.setState({ map: map, platform: platform });
@@ -96,7 +125,7 @@ export class DisplayMapClass extends React.Component {
   render() {
     return (
       // Set a height on the map so it will display
-      <div ref={this.mapRef} style={{ height: "600px" }} />
+      <div ref={this.mapRef} style={{ height: "700px" }} />
     );
   }
 }

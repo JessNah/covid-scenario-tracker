@@ -26,7 +26,7 @@ class HereMap extends Component {
         return (
             <div>
                 <DisplayMapClass
-                    apiKey="insertAPIkeyhere"
+                    apiKey="insertactualapiKey"
                     lat={this.props.lat} //"42.345978"
                     lng={this.props.lng} //"-83.0405"
                     zoom="15"

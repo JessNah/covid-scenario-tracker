@@ -6,7 +6,7 @@ import GeoLocation from "../../Components/MapDashBoard/GeoLocation/GeoLocation";
 const MapDashBoard = (props) => {
 	return (
 		<React.Fragment>
-			<div className="mapDashboard">
+			<div className="">
 				<GeoLocation>
 					<HereMap/>
 				</GeoLocation>
