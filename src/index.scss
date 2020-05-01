@@ -11,6 +11,12 @@ $css--reset: true;
 $css--default-type: true;
 $css--plex: true;
 
+$feature-flags: (
+  components-x: true,
+  ui-shell: true,
+  grid-columns-16: true,
+);
+
 // Include defaults typically provided through the `styles.scss` entrypoint
 @import 'carbon-components/scss/globals/scss/_css--reset.scss';
 @import 'carbon-components/scss/globals/scss/_css--font-face.scss';

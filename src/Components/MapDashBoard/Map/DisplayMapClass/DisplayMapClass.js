@@ -28,7 +28,6 @@ export class DisplayMapClass extends React.Component {
         theme,
         256,
         'png',
-        // {'style': style}
     );
     this.state.map.setBaseLayer(layer);
 }

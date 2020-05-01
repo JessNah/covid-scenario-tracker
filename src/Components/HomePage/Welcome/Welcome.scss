@@ -7,17 +7,63 @@
   @include carbon--type-style('expressive-heading-06');
   color: white; //$ui-background;
   width: 100%;
-  background: linear-gradient(135deg, #221fff, #948dff);
-  padding: 80px;
-  padding-top: 130px; 
+  background: linear-gradient(135deg, #221fff, #bbb7ff);
+  padding: 100px 80px 40px 80px;
+  border-bottom-right-radius: 50% 40%;
 }
 
 .ApplicationName{
-  @include carbon--type-style('expressive-heading-04');
+  @include carbon--type-style('expressive-heading-06');
   color: white;
   margin-bottom: 20px;
 }
 
+.Subtitle{
+  @include carbon--type-style('expressive-heading-03');
+  color: white;
+  margin-bottom: 20px;
+}
+
+.myBtn{
+  padding: 20px;
+}
+
 .Description{
-  margin-top:60px;
+  background-color: white;
+  background: linear-gradient(135deg, #fff, #fff);
+  padding: 100px 120px 40px 120px
+}
+
+.verticallyCenter{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.graphic2{
+  max-width:90%;
+}
+
+.DescriptionHeader{
+  @include carbon--type-style('expressive-heading-06');
+  color: #393939;
+  margin-bottom: 20px;
+}
+
+.DescriptionText {
+  @include carbon--type-style('expressive-heading-03');
+  color: #393939;
+}
+
+.graphic3{
+  max-width:80%;
+}
+
+.graphic4{
+  max-width:60%;
+}
+
+.testedPositiveBackgroundColor{
+  background-color: #dde3ff7d;
+  padding: 100px 120px 40px 120px
 }

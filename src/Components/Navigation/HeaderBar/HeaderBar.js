@@ -42,8 +42,8 @@ class HeaderBar extends React.Component {
       <Header aria-label="IBM Platform Name">
         <HeaderName
           href="#"
-          prefix="COVID" >
-          Scenario Tracker
+          prefix="COVID " >
+          Exposure
         </HeaderName>
         <HeaderNavigation aria-label="IBM [Platform]">
           <HeaderMenuItem href="#/map/">View the Spread</HeaderMenuItem>
