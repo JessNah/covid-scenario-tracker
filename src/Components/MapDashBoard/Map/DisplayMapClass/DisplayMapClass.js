@@ -3,6 +3,8 @@ import * as React from 'react';
 
 export class DisplayMapClass extends React.Component {
   mapRef = React.createRef();
+  behavior = null;
+  ui = null;
   state = {
     // The map instance to use during cleanup
     map: null,
@@ -53,6 +55,31 @@ export class DisplayMapClass extends React.Component {
       }
     );
 
+    // MapEvents enables the event system
+    // Behavior implements default interactions for pan/zoom (also on mobile touch environments)
+    // This variable is unused and is present for explanatory purposes
+    this.behavior = new H.mapevents.Behavior(new H.mapevents.MapEvents(map));
+
+    // Create the default UI components to allow the user to interact with them
+    // This variable is unused
+    this.ui = H.ui.UI.createDefault(map, defaultLayers);
+
+
+    // add customer marker
+    var LocationOfMarker = { lat: this.props.lat, lng: this.props.lng };
+    // Create a marker icon from an image URL:
+    // var icon = new H.map.Icon('path of marker img');
+
+    // Create a marker using the previously instantiated icon:
+    var marker = new H.map.Marker(LocationOfMarker, {}); // { icon: icon}
+
+    // var heatpoint = new H.geo.Ipoint({lat: this.props.lat, lng: this.props.lng});
+
+    // Add the marker to the map:
+    map.addObject(marker);
+    // map.addObject(heatpoint);
+
+
     this.setState({ map: map, platform: platform });
   }
 
@@ -69,7 +96,7 @@ export class DisplayMapClass extends React.Component {
   render() {
     return (
       // Set a height on the map so it will display
-      <div ref={this.mapRef} style={{ height: "500px" }} />
+      <div ref={this.mapRef} style={{ height: "600px" }} />
     );
   }
 }

@@ -47,7 +47,7 @@ class HeaderBar extends React.Component {
         </HeaderName>
         <HeaderNavigation aria-label="IBM [Platform]">
           <HeaderMenuItem href="#/map/">View the Spread</HeaderMenuItem>
-          <HeaderMenuItem href="#">Scenarios</HeaderMenuItem>
+          <HeaderMenuItem href="#">Tested Positive?</HeaderMenuItem>
           {/* <HeaderMenuItem href="#">Link 3</HeaderMenuItem>
           <HeaderMenu aria-label="Link 4" menuLinkName="Link 4">
             <HeaderMenuItem href="#">Sub-link 1</HeaderMenuItem>
