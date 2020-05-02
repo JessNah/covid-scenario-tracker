@@ -1,10 +1,13 @@
 // src/DisplayMapClass.js
 import * as React from 'react';
+import data from '../../../../data.json';
+import './DisplayMapClass.scss';
+
 
 export class DisplayMapClass extends React.Component {
   mapRef = React.createRef();
   behavior = null;
-  ui = null;
+
   state = {
     // The map instance to use during cleanup
     map: null,
@@ -62,7 +65,7 @@ export class DisplayMapClass extends React.Component {
 
     // Create the default UI components to allow the user to interact with them
     // This variable is unused
-    this.ui = H.ui.UI.createDefault(map, defaultLayers);
+    var ui = H.ui.UI.createDefault(map, defaultLayers);
 
 
 
@@ -75,7 +78,7 @@ export class DisplayMapClass extends React.Component {
     var marker = new H.map.Marker(LocationOfMarker, {}); // { icon: icon}
       
     // Add the marker to the map:
-    map.addObject(marker);
+    //map.addObject(marker);
 
 
 
@@ -93,14 +96,84 @@ export class DisplayMapClass extends React.Component {
       assumeValues: true
     });
 
-    // Add the data:
-    heatmapProvider.addData([
-      {lat: this.props.lat, lng: this.props.lng, value: 1},
-      {lat: this.props.lat + 0.004, lng: this.props.lng + 0.005, value: 1},
-      {lat: this.props.lat - 0.005, lng: this.props.lng - 0.002, value: 1},
-      {lat: this.props.lat + 0.003, lng: this.props.lng - 0.004, value: 1},
-      {lat: this.props.lat + 0.005, lng: this.props.lng - 0.007, value: 1}
-    ]);
+    var group = new H.map.Group();
+
+    console.log("hello");
+		let locationArray = [];
+    let location = { lat: "", lng: "" }
+    var newdata = JSON.stringify(data);
+    var formattedTime;
+		JSON.parse(newdata, function (key, value) {
+			if (key === "latitudeE7" || key === "latE7") {
+				const decimalVal = parseInt(value) * 0.0000001;
+				location.lat = decimalVal + "";
+			}
+			if (key === "longitudeE7" || key === "lngE7") {
+				const decimalVal = parseInt(value) * 0.0000001;
+				location.lng = decimalVal + ""; 
+        // console.log("lat: " + location.lat + ", lng: " +location.lng );
+      }
+      if (key == "startTimestampMs") {
+        const unixTimestamp = value; 
+  
+            // convert to milliseconds 
+            // and then create a new Date object 
+            var dateObj = new Date(unixTimestamp * 1000); 
+  
+            // Get hours from the timestamp 
+            var hours = dateObj.getUTCHours(); 
+  
+            // Get minutes part from the timestamp 
+            var minutes = dateObj.getUTCMinutes(); 
+  
+            // Get seconds part from the timestamp 
+            var seconds = dateObj.getUTCSeconds(); 
+  
+            formattedTime = dateObj.toDateString() + hours.toString().padStart(2, '0') + ':' + 
+                minutes.toString().padStart(2, '0') + ':' + 
+                seconds.toString().padStart(2, '0'); 
+      }
+      if (key == "address") {
+        var marker = new H.map.Marker({lat: location.lat,lng: location.lng}, {}); // { icon: icon}
+
+        formattedTime = formattedTime+value;
+        marker.setData(formattedTime);
+        map.addObject(marker);
+        map.setCenter(location);
+        group.addObject(marker);
+
+				locationArray.push({ lat: location.lat, lng: location.lng, value: 1 });
+        heatmapProvider.addData(locationArray);
+        location = { lat: "", lng: "" }
+
+      }
+    });
+
+     // add 'tap' event listener, that opens info bubble, to the group
+    group.addEventListener('tap', function (evt) {
+    // event target is the marker itself, group is a parent event target
+    // for all objects that it contains
+    var bubble =  new H.ui.InfoBubble(evt.target.getGeometry(), {
+      // read custom data
+      content: evt.target.getData()
+    });
+    // show info bubble
+    ui.addBubble(bubble);
+  }, false);
+   map.addObject(group);
+
+    console.log(locationArray);
+
+
+
+    // // Add the data:
+    // heatmapProvider.addData([
+    //   {lat: this.props.lat, lng: this.props.lng, value: 1},
+    //   {lat: this.props.lat + 0.004, lng: this.props.lng + 0.005, value: 1},
+    //   {lat: this.props.lat - 0.005, lng: this.props.lng - 0.002, value: 1},
+    //   {lat: this.props.lat + 0.003, lng: this.props.lng - 0.004, value: 1},
+    //   {lat: this.props.lat + 0.005, lng: this.props.lng - 0.007, value: 1}
+    // ]);
 
     if(this.props && this.props.usrLocationData){
       console.log(this.props.usrLocationData);
