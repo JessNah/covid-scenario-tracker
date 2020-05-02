@@ -51,11 +51,11 @@ class ThemeSelector extends Component {
         var thumbnails = [];
         var onChange = this.props.changeTheme;
         themes.forEach(function(theme) {
-            thumbnails.push(<img key={ theme } src={themeMapper(theme)} onClick= { onChange } alt={ theme } id={ theme } />);
+            thumbnails.push(<img style={{height:"50px"}} key={ theme } src={themeMapper(theme)} onClick= { onChange } alt={ theme } id={ theme } />);
         });
 
         return (
-            <div>
+            <div style={{marginTop:"20px"}}>
             { thumbnails }
             </div>
         );
