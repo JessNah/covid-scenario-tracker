@@ -26,11 +26,12 @@ class HereMap extends Component {
         return (
             <div>
                 <DisplayMapClass
-                    apiKey="insertactualapiKey"
+                    apiKey="insertAPIKey"
                     lat={this.props.lat} //"42.345978"
                     lng={this.props.lng} //"-83.0405"
                     zoom="15"
                     theme={ this.state.theme }
+                    usrLocationData={this.props.usrLocationData}
                 />
                 <ThemeSelector changeTheme={ this.onChange } />
             </div>

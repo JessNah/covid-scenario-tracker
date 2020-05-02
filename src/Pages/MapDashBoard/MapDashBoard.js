@@ -7,7 +7,7 @@ const MapDashBoard = (props) => {
 	return (
 		<React.Fragment>
 			<div className="">
-				<GeoLocation>
+				<GeoLocation {...props} >
 					<HereMap/>
 				</GeoLocation>
 			</div>

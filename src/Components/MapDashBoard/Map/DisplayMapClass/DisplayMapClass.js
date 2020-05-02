@@ -102,6 +102,11 @@ export class DisplayMapClass extends React.Component {
       {lat: this.props.lat + 0.005, lng: this.props.lng - 0.007, value: 1}
     ]);
 
+    if(this.props && this.props.usrLocationData){
+      console.log(this.props.usrLocationData);
+      heatmapProvider.addData(this.props.usrLocationData);
+    }
+
     // Add a layer for the heatmap provider to the map:
     map.addLayer(new H.map.layer.TileLayer(heatmapProvider));
 

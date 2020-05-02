@@ -1,0 +1,31 @@
+@import 'carbon-components/scss/globals/scss/vendor/@carbon/elements/scss/type/_styles.scss';
+// @import '~carbon-components/scss/globals/scss/styles.scss';
+// uncomment above to be able to use color variables
+
+
+.wrapper{
+    margin-top:100px;
+}
+
+.fileUpload_head{
+    @include carbon--type-style('expressive-heading-06');
+    color: white;
+    margin-bottom: 20px;
+  }
+  
+.fileUpload_sub{
+    color: white;
+    margin-bottom: 20px;
+    padding-left: 6rem;
+    padding-right: 6rem;
+    padding-top: 1rem;
+    font-size: 1.1rem;
+}
+
+.columns{
+    height: 100%
+}
+
+.leftCol{
+    background: linear-gradient(235deg, #bbb7ff, #221fff); //bbb7ff
+}
